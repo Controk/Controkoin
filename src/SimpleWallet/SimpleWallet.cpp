@@ -449,7 +449,7 @@ simple_wallet::simple_wallet(System::Dispatcher& dispatcher, const CryptoNote::C
   m_daemon_port(0), 
   m_currency(currency), 
   logManager(log),
-  logger(log, "simplewallet"),
+  logger(log, "controkoin-wallet-cli"),
   m_refresh_progress_reporter(*this), 
   m_initResultPromise(nullptr),
   m_walletSynchronized(false) {
@@ -686,7 +686,7 @@ bool simple_wallet::new_wallet(const std::string &wallet_file, const std::string
     "**********************************************************************\n" <<
     "Your wallet has been generated.\n" <<
     "Use \"help\" command to see the list of available commands.\n" <<
-    "Always use \"exit\" command when closing simplewallet to save\n" <<
+    "Always use \"exit\" command when closing controkoin-wallet-cli to save\n" <<
     "current session's state. Otherwise, you will possibly need to synchronize \n" <<
     "your wallet again. Your wallet key is NOT under risk anyway.\n" <<
     "**********************************************************************";
@@ -1093,7 +1093,7 @@ int main(int argc, char* argv[]) {
       CryptoNote::simple_wallet tmp_wallet(dispatcher, tmp_currency, logManager);
 
       std::cout << CRYPTONOTE_NAME << " wallet v" << PROJECT_VERSION_LONG << std::endl;
-      std::cout << "Usage: simplewallet [--wallet-file=<file>|--generate-new-wallet=<file>] [--daemon-address=<host>:<port>] [<COMMAND>]";
+      std::cout << "Usage: controkoin-wallet-cli [--wallet-file=<file>|--generate-new-wallet=<file>] [--daemon-address=<host>:<port>] [<COMMAND>]";
       std::cout << desc_all << '\n' << tmp_wallet.get_commands_str();
       return false;
     } else if (command_line::get_arg(vm, command_line::arg_version))  {

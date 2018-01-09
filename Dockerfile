@@ -1,11 +1,14 @@
-FROM ubuntu:14.04 as builder
+FROM ubuntu:16.04 as builder
 
 RUN apt-get update && \
     apt-get --no-install-recommends --yes install \
         build-essential \
         git \
         cmake \
-        libboost1.55-all-dev
+        libboost-all-dev
+
+WORKDIR /src
+COPY . .
 
 ARG NPROC
 
@@ -13,7 +16,7 @@ RUN rm -rf build && \
     if [ -z "$NPROC" ];then make -j$(nproc);else make -j$NPROC;fi
 
 # runtime stage
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
 RUN apt-get update && \
     apt-get --no-install-recommends --yes install ca-certificates && \
